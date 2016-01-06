@@ -37,7 +37,11 @@ fi
 if [ -n "$1" ]; then
     CC=$1
 else
-    CC=gcc
+    if [ `uname -r| awk -F'\.' '{print $1}'` -ge 10 ]; then
+        CC=clang
+    else
+        CC=gcc
+    fi
 fi
 
 # Each UNAME subr_ file is expected to set AWK & SED, and to provide the
